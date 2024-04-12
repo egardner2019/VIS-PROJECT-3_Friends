@@ -3,6 +3,13 @@
 const fs = require("fs");
 const readline = require("readline");
 
+const capitalizeFirstLetters = (stringToBeFormatted) => {
+  if (stringToBeFormatted === "C.H.E.E.S.E") return stringToBeFormatted;
+  return stringToBeFormatted
+    .toLowerCase()
+    .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+};
+
 // Read file line by line
 const readStream = readline.createInterface({
   input: fs.createReadStream("data/Friends_Transcript.txt"),
@@ -52,9 +59,7 @@ readStream.on("line", (line) => {
     currentScene = 0;
     transcriptJSON.seasons[currentSeason - 1].episodes.push({
       number: currentEpisode,
-      name: line
-        .toLowerCase()
-        .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase()),
+      name: capitalizeFirstLetters(line),
       scenes: [],
     });
   }
@@ -80,7 +85,9 @@ readStream.on("line", (line) => {
     const colonIndex = line.indexOf(":");
 
     // Get the character's name
-    const character = line.substring(0, colonIndex).trim();
+    const character = capitalizeFirstLetters(
+      line.substring(0, colonIndex).trim()
+    );
 
     // Get the line they said
     const spokenLine = line
