@@ -20,7 +20,7 @@ const firstEpisodeOfEachSeason = [
   "THE ONE AFTER ROSS SAYS RACHEL", // 5
   "THE ONE AFTER VEGAS", // 6
   "THE ONE WITH MONICA'S THUNDER", // 7
-  "THE ONE AFTER I DO", // 8
+  "THE ONE AFTER 'I DO'", // 8
   "THE ONE WHERE NO ONE PROPOSES", // 9
   "THE ONE AFTER JOEY AND RACHEL KISS", // 10
 ];
@@ -36,7 +36,7 @@ readStream.on("line", (line) => {
   line = line.trim();
 
   // If it's an episode title...
-  if (line.includes("THE ONE ")) {
+  if (line.includes("THE ONE ") || line.includes("THE LAST ONE")) {
     // If it's the start of a new season, create a new season in the JSON variable
     if (firstEpisodeOfEachSeason.includes(line)) {
       currentSeason++;
@@ -52,7 +52,9 @@ readStream.on("line", (line) => {
     currentScene = 0;
     transcriptJSON.seasons[currentSeason - 1].episodes.push({
       number: currentEpisode,
-      name: line,
+      name: line
+        .toLowerCase()
+        .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase()),
       scenes: [],
     });
   }
@@ -106,6 +108,6 @@ readStream.on("close", () => {
 });
 
 // Event listener for error
-readStream.on("error", err => {
+readStream.on("error", (err) => {
   console.error("Error reading file:", err);
 });
