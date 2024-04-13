@@ -26,16 +26,19 @@ class BarChart {
 
     // NOTE FOR EMILY B: use the vis.data variable. If it's not in a good format, feel free to modify the vis.data variable
     // ... but I would shy away from modifying the barchartData variable without contacting Emma
-    console.log(vis.data);
+    console.log("Barchart data:", vis.data);
 
     // NOTE FOR EMILY B...
     // The global barchartIsAppearances variable is true when the user has selected the "Episode appearances" option
     // It's false when they've selected the "Lines spoken" option. You can use this to determine the correct axes labeling.
-    console.log(barchartIsAppearances);
+    console.log(
+      "Barchart 'Episode appearances' is selected?:",
+      barchartIsAppearances
+    );
 
     // NOTE FOR EMILY B: you can also get the selected season with the barchartSelectedPeriod variable.
     // It's 0 when the user selected the entire show and anything else for that season (e.g. barchartSelectedPeriod == 1 means the first season was chosen)
-    console.log(barchartSelectedPeriod)
+    console.log("Barchart selected period:", barchartSelectedPeriod);
 
     // TODO: add the logic to create the elements that will update when the data changes (reminder: use join instead of enter and append)
   }

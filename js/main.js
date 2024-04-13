@@ -7,6 +7,8 @@ const numBarchartCharacters = 10;
 let barchartSelectedPeriod = 0,
   barchartIsAppearances = true;
 
+let heatmapSelectedCharacter = "Chandler";
+
 // Read in the JSON file and create the variable for all the data
 d3.json("data/data.json")
   .then((allData) => {
@@ -15,10 +17,12 @@ d3.json("data/data.json")
       getTopCharactersAppearancesBySeason(allData, numBarchartCharacters),
       numBarchartCharacters
     );
+    heatmapData = getNumberOfLinesPerEpisode(allData, heatmapSelectedCharacter);
     //#endregion
 
     //#region Create visualizations
     barchart = new BarChart();
+    heatmap = new HeatMap();
     //#endregion
 
     //#region Bar Chart logic
@@ -87,6 +91,22 @@ d3.json("data/data.json")
     //#endregion
 
     //#region Heat Map logic
+    const heatmapCharacterSelect = document.getElementById(
+      "heatmapCharacterSelect"
+    );
+
+    const updateHeatmap = () => {
+      heatmapData = getNumberOfLinesPerEpisode(
+        allData,
+        heatmapSelectedCharacter
+      );
+      heatmap.updateVis();
+    };
+
+    heatmapCharacterSelect.onchange = () => {
+      heatmapSelectedCharacter = heatmapCharacterSelect.value;
+      updateHeatmap();
+    };
     //#endregion
 
     //#region Word Cloud logic
