@@ -106,6 +106,22 @@ const getTopCharactersLinesBySeason = (allData, numCharacters) => {
   });
 };
 
+// Get the number of lines the provided character says within each episode (for heatmap)
+const getNumberOfLinesPerEpisode = (allData, characterName) => {
+  return allData.seasons.flatMap((season, seasonIndex) =>
+    season.episodes.flatMap((episode, episodeIndex) => ({
+      season: seasonIndex + 1,
+      episode: episodeIndex + 1,
+      linesSpoken: episode.scenes.reduce(
+        (acc, scene) =>
+          acc +
+          scene.lines.filter((line) => line.character === characterName).length,
+        0
+      ),
+    }))
+  );
+};
+
 // Get all of the characters present within all the data
 // DO NOT USE AGAIN, JUST FOR CREATING namedCharacters IN helperVariables.js
 const getAllCharacters = () => {
@@ -120,20 +136,6 @@ const getAllCharacters = () => {
       )
     ),
   ];
-};
-
-// Get the number of lines the provided character says within each episode (for heatmap)
-const getNumberOfLinesPerEpisode = (characterName) => {
-  return allData.seasons.flatMap((season, seasonIndex) =>
-    season.episodes.flatMap((episode, episodeIndex) =>
-      episode.scenes.map((scene) => ({
-        season: seasonIndex + 1,
-        episode: episodeIndex + 1,
-        numLines: scene.lines.filter((line) => line.character === characterName)
-          .length,
-      }))
-    )
-  );
 };
 
 // Used to create the locationFrequencies variable in helperVariables.js
