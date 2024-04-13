@@ -1,18 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>D3 Project Starter Template</title>
-    <meta charset="UTF-8">
+  <head>
+    <title>Project 3: TV Time</title>
+    <meta charset="UTF-8" />
     <link rel="icon" href="data:;base64,iVBORwOKGO=" />
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>    
-    <!-- Add HTML content, SVG drawing area, ... -->
-    
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>Project 3: TV Time</h1>
+    <p>
+      By: Emily Bever, Emma Gardner, Emily Turcotte, and Molly Vongsakhamphouy
+    </p>
+    <h2>Friends</h2>
+    <div id="aboutContainer" class="flexContainer">
+      <div id="aboutShowDiv">
+        <h3>About the Show</h3>
+        <p>
+          TODO: talk about the main premise of the show. Say when it ran and on
+          what platform(s).
+        </p>
+      </div>
+      <div id="aboutSeasonsEpisodesDiv">
+        <h3>About the Seasons and Episodes</h3>
+        <p>
+          TODO: talk about the number of seasons (10) and total number of
+          episodes (227). number of episodes per season ranges from 17 to 25.
+        </p>
+      </div>
+      <div id="aboutCharactersDiv">
+        <h3>About the Characters</h3>
+        <p>
+          TODO: briefly talk about each of the major characters and list some
+          side characters
+        </p>
+      </div>
+    </div>
+    <div id="barchartSection">
+      <h3>Who are the most important characters?</h3>
+      <div class="flexContainer">
+        <div>
+          <select name="barchartPeriodSelect" id="barchartPeriodSelect">
+            <option value="0">Entire Show</option>
+            <option value="1">Season 1</option>
+            <option value="2">Season 2</option>
+            <option value="3">Season 3</option>
+            <option value="4">Season 4</option>
+            <option value="5">Season 5</option>
+            <option value="6">Season 6</option>
+            <option value="7">Season 7</option>
+            <option value="8">Season 8</option>
+            <option value="9">Season 9</option>
+            <option value="10">Season 10</option>
+          </select>
+        </div>
+        <div>
+          <b>Displayed data:</b>
+          <div>
+            <input
+              type="radio"
+              id="episodeAppearances"
+              name="displayedDataBarchart"
+              value="episodeAppearances"
+              checked
+            />
+            <label for="episodeAppearances">Episode appearances</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="linesSpoken"
+              name="displayedDataBarchart"
+              value="linesSpoken"
+            />
+            <label for="linesSpoken">Lines spoken</label>
+          </div>
+        </div>
+      </div>
+      <div id="barchart"></div>
+    </div>
+    <div id="heatmapSection">
+      <h3>How much do the major characters speak?</h3>
+      <div id="heatmap"></div>
+    </div>
+    <div id="wordcloudSection">
+      <h3>What do characters say?</h3>
+      <div id="wordcloud"></div>
+    </div>
+    <div id="arcdiagramSection">
+      <h3>Who appears in scenes together?</h3>
+      <div id="arcdiagram"></div>
+    </div>
+    <div id="treemapSection">
+      <h3>Where do characters speak?</h3>
+      <div id="treemap"></div>
+    </div>
+
     <!-- D3 bundle -->
     <script src="js/d3.v6.min.js"></script>
 
     <!-- Our JS code -->
     <script src="js/main.js"></script>
-</body>
+    <script src="js/helperMethods.js"></script>
+    <script src="js/helperVariables.js"></script>
+    <script src="js/visualizations/barChart.js"></script>
+  </body>
 </html>
