@@ -43388,8 +43388,8 @@ Cecilia: You too
 [Scene: Monica and Chandler's apartment]
 Ross: You know the song Sing along
 Phoebe: Eeee Eee Eee
-Matthew Perry: Eee
-Lisa Kudrow: Do it again
+Chandler: Eee
+Phoebe: Do it again
 END
 
 THE ONE WITH THE TRUTH ABOUT LONDON
@@ -59522,7 +59522,7 @@ Joey: Lets forget about Ross
 Rachel: Forgotten
 Joey: Whats wrong
 Rachel: Nothing
-Joeys: Seriously What is it
+Joey: Seriously What is it
 Rachel: Nothing Its really Its nothing Come here come here
 Joey: Whats wrong
 Rachel: Sorry I just uhm I cant seem to get Ross out of my head
