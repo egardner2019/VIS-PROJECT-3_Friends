@@ -1,9 +1,10 @@
 /**
  * Get the count of all non-stop words in the provided array
  * @param {Array} arrayOfWords An array (or array of arrays) of words
+ * @param {number} numWords The number of words to return
  * @returns {[...{word: string, count: number}]} An array with objects containing the count of each non-stop word
  */
-const getWordCounts = (arrayOfWords) => {
+const getWordCounts = (arrayOfWords, numWords) => {
   // Make the array 1D and remove stop words
   const filteredWords = arrayOfWords
     .flat(Infinity)
@@ -12,7 +13,42 @@ const getWordCounts = (arrayOfWords) => {
   // Get the count of each word
   return Object.entries(
     filteredWords.reduce((acc, word) => ((acc[word] = -~acc[word]), acc), {})
-  ).map(([word, count]) => ({ word, count }));
+  )
+    .map(([word, count]) => ({ word, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, numWords);
+};
+
+// Get the words a character said in the entire show (for wordcloud)
+const getCharacterWordsEntireShow = (allData, characterName, numWords) => {
+  const unfilteredWords = allData.seasons.flatMap((season) =>
+    season.episodes.flatMap((episode) =>
+      episode.scenes.flatMap((scene) =>
+        scene.lines
+          .filter((line) => line.character === characterName)
+          .map((line) => line.words)
+      )
+    )
+  );
+  return getWordCounts(unfilteredWords, numWords);
+};
+
+// Get the words a character said in a specific season (for wordcloud)
+const getCharacterWordsSingleSeason = (
+  allData,
+  seasonNumber,
+  characterName,
+  numWords
+) => {
+  const unfilteredWords = allData.seasons[seasonNumber - 1].episodes.flatMap(
+    (episode) =>
+      episode.scenes.flatMap((scene) =>
+        scene.lines
+          .filter((line) => line.character === characterName)
+          .flatMap((line) => line.words)
+      )
+  );
+  return getWordCounts(unfilteredWords, numWords);
 };
 
 // Get the characters that appear in the most episodes in each season (for barchart)
