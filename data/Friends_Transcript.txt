@@ -12984,15 +12984,15 @@ Ross: Awwww
 [Scene: banquet]
 Sherman Whitfield: Dr. Geller Sherman Whitfield London Institute
 Ross: Wow What a pleasure
-Whitfield: Well I have to tell you I was quite impressed with your paper on Pre Cretaceous fossils Yeah it confirmed everything that I have written
+Sherman Whitfield: Well I have to tell you I was quite impressed with your paper on Pre Cretaceous fossils Yeah it confirmed everything that I have written
 Chandler: Excuse me Hi
-Whitfield: Yes
+Sherman Whitfield: Yes
 Chandler: Well your kind of sitting in my seat
-Whitfield: What do you mean your seat
+Sherman Whitfield: What do you mean your seat
 Chandler: I mean I was sitting there
-Whitfield: But you got up
+Sherman Whitfield: But you got up
 Chandler: But I never left the room
-Whitfield: But you left the chair area
+Sherman Whitfield: But you left the chair area
 Chandler: All right thats it give me your underwear
 END
 
@@ -57318,7 +57318,7 @@ Ross: Theyre towing a car And I am seeing spots
 Joey: Oh my god Ross You dont have Emma And Rachel you dont have Emma Wheres Emma Who has Emma
 Rachel: Joey relax My mother picked her up two hours ago You were there
 Joey: I was
-Racel: Yes and you talked to her
+Rachel: Yes and you talked to her
 Joey: I did
 Rachel: She dropped off a casserole
 Joey: Oh yeah The casserole lady
@@ -58064,7 +58064,7 @@ Ross: Oh yeah no no Nobel Prizes for him
 Charlie: No but he did just win the McArthur genius grant
 Ross: Huh huh what a loser Some more wine
 Phoebe: Hey Ross
-Rache: How is it going with Charlie
+Rachel: How is it going with Charlie
 Ross: Oh Great After I finish my wine Im going to blow my eh average sized brains out
 Phoebe: Oh Whats the matter
 Ross: She she only dates geniuses and Nobel Prize winners Oh my God at the chinese restaurant earlier today I put chopsticks in my mouth and pretented to be a woolly mammoth
@@ -58540,7 +58540,7 @@ Ross: What
 Ross: What NO I am not going to give them Ben
 [Scene: office]
 Ross: The data we are receiving from MRI scans and DNA testing of these fossils are are staggering
-Professor Sherman: Mmm mm
+Sherman Whitfield: Mmm mm
 Ross: I mean weve been accepting Leakeys dates as a given but if theyre off by even a hundred thousand years or so then you can you can just throw most of our assumptions you know right in the trash So so what I am saying is is is that is that the repercussions could be huge I mean not just in palaeontology but if if you think about it in evolutionary biology uh genetics geology uh I mean truly the mind boggles
 Ross: Oh thats not what you want
 [Scene: store]
@@ -58683,7 +58683,7 @@ Charlie: You know by the way I heard you tell her not to do anything Thanks for 
 Rachel: I try
 [Scene: office]
 Ross: Oh my God You really want me to be the keynote speaker Thank you
-Prof Sherman: Youre welcome
+Sherman Whitfield: Youre welcome
 [Scene: Central Perk]
 Joey: Wow You look stop eating hot Which is like the highest level of hotness
 Phoebe: Are you sure Because Im really dreading going to this party
