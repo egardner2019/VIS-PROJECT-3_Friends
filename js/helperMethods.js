@@ -157,6 +157,20 @@ const getNumberOfLinesPerEpisode = (characterName) => {
   );
 };
 
+// Get the maximum number of lines spoken by the currently selected heatmap character
+const getMaxLinesSpoken = () => {
+  return heatmapData.reduce((max, obj) => {
+    return obj.linesSpoken > max ? obj.linesSpoken : max;
+  }, -Infinity);
+};
+
+// Get the minimum number of lines spoken by the currently selected heatmap character
+const getMinLinesSpoken = () => {
+  return heatmapData.reduce((min, obj) => {
+    return obj.linesSpoken < min ? obj.linesSpoken : min;
+  }, Infinity);
+};
+
 // Get the data for the tree map visualization
 const getTreeMapData = (numLocations, numCharacters) => {
   const locations = locationFrequencies.slice(0, numLocations);

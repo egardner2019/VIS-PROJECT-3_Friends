@@ -24,6 +24,13 @@ class HeatMap {
     const vis = this;
     vis.data = heatmapData;
 
+    const minLinesSpoken = getMinLinesSpoken();
+    const maxLinesSpoken = getMaxLinesSpoken();
+
+    // NOTE FOR MOLLY: use [minLinesSpoken, maxLinesSpoken] for the color range
+    // This automatically updates whenever a new character is selected
+    console.log("Heatmap color range:", minLinesSpoken, maxLinesSpoken);
+
     // NOTE FOR MOLLY: use the vis.data variable. If you decide you need a different format, feel free to modify the vis.data variable
     // ... after it's set to heatmapData. I would shy away from modifying the heatmapData variable without contacting Emma
     // The data is automatically filtered by the selected character, so no need to worry about that part
