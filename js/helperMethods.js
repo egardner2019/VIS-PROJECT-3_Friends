@@ -145,8 +145,9 @@ const getTopCharactersLinesBySeason = (numCharacters) => {
 const getNumberOfLinesPerEpisode = (characterName) => {
   return allData.seasons.flatMap((season, seasonIndex) =>
     season.episodes.flatMap((episode, episodeIndex) => ({
-      season: seasonIndex + 1,
-      episode: episodeIndex + 1,
+      seasonNum: seasonIndex + 1,
+      episodeNum: episodeIndex + 1,
+      episodeName: episode.name,
       linesSpoken: episode.scenes.reduce(
         (acc, scene) =>
           acc +
