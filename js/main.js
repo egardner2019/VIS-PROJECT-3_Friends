@@ -6,6 +6,9 @@ let barchartData, heatmapData, wordcloudData, arcdiagramData;
 const numBarchartCharacters = 10;
 // Change the variable below to get more/fewer words for the word cloud
 const numWordcloudWords = 50;
+// Change the variable below to get fewer characters for the arc diagram
+// This cannot be anything greater than 10 because we've hard-coded only 10 characters per season
+const numArcdiagramCharacters = 10;
 
 let barchartSelectedPeriod = 0,
   barchartIsAppearances = true;
@@ -14,6 +17,8 @@ let heatmapSelectedCharacter = "Chandler";
 
 let wordcloudSelectedPeriod = 0,
   wordcloudSelectedCharacter = "Rachel";
+
+let arcdiagramSelectedSeason = 1;
 
 // Read in the JSON file and create the variable for all the data
 d3.json("data/data.json")
@@ -29,6 +34,10 @@ d3.json("data/data.json")
       wordcloudSelectedCharacter,
       numWordcloudWords
     );
+    arcdiagramData = getArcDiagramData(
+      arcdiagramSelectedSeason,
+      numArcdiagramCharacters
+    );
     // Tree map data is determined within treeMap.js and never changes
     //#endregion
 
@@ -36,6 +45,7 @@ d3.json("data/data.json")
     barchart = new BarChart();
     heatmap = new HeatMap();
     wordcloud = new WordCloud();
+    arcdiagram = new ArcDiagram();
     treemap = new TreeMap();
     //#endregion
 
@@ -172,6 +182,22 @@ d3.json("data/data.json")
     //#endregion
 
     //#region Arc Diagram logic
+    const arcdiagramPeriodSelect = document.getElementById(
+      "arcdiagramPeriodSelect"
+    );
+
+    const updateArcdiagram = () => {
+      arcdiagramData = getArcDiagramData(
+        arcdiagramSelectedSeason,
+        numArcdiagramCharacters
+      );
+      arcdiagram.updateVis();
+    };
+
+    arcdiagramPeriodSelect.onchange = () => {
+      arcdiagramSelectedSeason = arcdiagramPeriodSelect.value;
+      updateArcdiagram();
+    };
     //#endregion
   })
   .catch((error) => console.error(error));
