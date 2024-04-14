@@ -213,6 +213,50 @@ const getTreeMapData = (numLocations, numCharacters) => {
   });
 };
 
+// Get the number of scenes each pair of the top characters are in together (for arc diagram)
+const getArcDiagramData = (selectedSeason, numCharacters) => {
+  // Can't have more than 10 characters per season because
+  //   we've hard-coded only 10 in wordcloudCharacterOptions in helperVariables.js
+  if (numCharacters > 10) numCharacters = 10;
+  const season = allData.seasons[selectedSeason - 1];
+  const wordcloudCharacters = wordcloudCharacterOptions[selectedSeason].slice(
+    0,
+    numCharacters
+  );
+
+  const interactionsMap = {};
+
+  season.episodes.forEach((episode) => {
+    episode.scenes.forEach((scene) => {
+      const charactersInScene = scene.lines.reduce((characters, line) => {
+        const character = line.character;
+        if (!characters.includes(character)) {
+          characters.push(character);
+        }
+        return characters;
+      }, []);
+
+      charactersInScene.forEach((characterA, indexA) => {
+        charactersInScene.slice(indexA + 1).forEach((characterB) => {
+          const interactionKey = [characterA, characterB].sort().join("-");
+          if (
+            wordcloudCharacters.includes(characterA) &&
+            wordcloudCharacters.includes(characterB)
+          ) {
+            interactionsMap[interactionKey] =
+              (interactionsMap[interactionKey] || 0) + 1;
+          }
+        });
+      });
+    });
+  });
+
+  return Object.entries(interactionsMap).map(([interaction, count]) => {
+    const [characterA, characterB] = interaction.split("-");
+    return { characterA, characterB, interactions: count };
+  });
+};
+
 // Get all of the characters present within all the data
 // DO NOT USE AGAIN, JUST FOR CREATING namedCharacters IN helperVariables.js
 const getAllCharacters = () => {
