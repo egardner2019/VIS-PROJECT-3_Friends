@@ -20,7 +20,7 @@ const getWordCounts = (arrayOfWords, numWords) => {
 };
 
 // Get the words a character said in the entire show (for wordcloud)
-const getCharacterWordsEntireShow = (allData, characterName, numWords) => {
+const getCharacterWordsEntireShow = (characterName, numWords) => {
   const unfilteredWords = allData.seasons.flatMap((season) =>
     season.episodes.flatMap((episode) =>
       episode.scenes.flatMap((scene) =>
@@ -35,7 +35,6 @@ const getCharacterWordsEntireShow = (allData, characterName, numWords) => {
 
 // Get the words a character said in a specific season (for wordcloud)
 const getCharacterWordsSingleSeason = (
-  allData,
   seasonNumber,
   characterName,
   numWords
@@ -52,7 +51,7 @@ const getCharacterWordsSingleSeason = (
 };
 
 // Get the characters that appear in the most episodes in each season (for barchart)
-const getTopCharactersAppearancesBySeason = (allData, numCharacters) => {
+const getTopCharactersAppearancesBySeason = (numCharacters) => {
   return allData.seasons.map((_, seasonIndex) => ({
     season: seasonIndex + 1,
     appearances: [
@@ -116,7 +115,7 @@ const getTopCharactersLinesEntireShow = (
 };
 
 // Get the characters that speak the most lines in each season (for barchart)
-const getTopCharactersLinesBySeason = (allData, numCharacters) => {
+const getTopCharactersLinesBySeason = (numCharacters) => {
   return allData.seasons.map((season, index) => {
     // Initialize an object to store line counts for each character
     const lineCounts = {};
@@ -143,7 +142,7 @@ const getTopCharactersLinesBySeason = (allData, numCharacters) => {
 };
 
 // Get the number of lines the provided character says within each episode (for heatmap)
-const getNumberOfLinesPerEpisode = (allData, characterName) => {
+const getNumberOfLinesPerEpisode = (characterName) => {
   return allData.seasons.flatMap((season, seasonIndex) =>
     season.episodes.flatMap((episode, episodeIndex) => ({
       season: seasonIndex + 1,
@@ -156,6 +155,48 @@ const getNumberOfLinesPerEpisode = (allData, characterName) => {
       ),
     }))
   );
+};
+
+// Get the data for the tree map visualization
+const getTreeMapData = (numLocations, numCharacters) => {
+  const locations = locationFrequencies.slice(0, numLocations);
+  return locations.map((locationObj) => {
+    const location = locationObj.location;
+    const characterAppearances = {};
+
+    allData.seasons.forEach((season) => {
+      season.episodes.forEach((episode) => {
+        episode.scenes.forEach((scene) => {
+          if (scene.location === location) {
+            const charactersInScene = new Set();
+            scene.lines.forEach((line) => {
+              if (namedCharacters.includes(line.character)) {
+                charactersInScene.add(line.character);
+              }
+            });
+            charactersInScene.forEach((character) => {
+              characterAppearances[character] =
+                (characterAppearances[character] || 0) + 1;
+            });
+          }
+        });
+      });
+    });
+
+    const sortedCharacters = Object.entries(characterAppearances)
+      .sort(([, countA], [, countB]) => countB - countA)
+      .slice(0, numCharacters);
+
+    return {
+      location,
+      characterAppearances: sortedCharacters.map(
+        ([character, numAppearances]) => ({
+          character,
+          numAppearances,
+        })
+      ),
+    };
+  });
 };
 
 // Get all of the characters present within all the data

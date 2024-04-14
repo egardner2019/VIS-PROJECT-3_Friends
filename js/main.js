@@ -1,5 +1,6 @@
+let allData;
 let barchart, heatmap, wordcloud, arcdiagram, treemap;
-let barchartData, heatmapData, wordcloudData, arcdiagramData, treemapData;
+let barchartData, heatmapData, wordcloudData, arcdiagramData;
 
 // Change the variable below to get more/fewer characters for the bar chart
 const numBarchartCharacters = 10;
@@ -16,24 +17,26 @@ let wordcloudSelectedPeriod = 0,
 
 // Read in the JSON file and create the variable for all the data
 d3.json("data/data.json")
-  .then((allData) => {
+  .then((jsonResult) => {
+    allData = jsonResult;
     //#region Initial data
     barchartData = getTopCharactersAppearancesEntireShow(
-      getTopCharactersAppearancesBySeason(allData, numBarchartCharacters),
+      getTopCharactersAppearancesBySeason(numBarchartCharacters),
       numBarchartCharacters
     );
-    heatmapData = getNumberOfLinesPerEpisode(allData, heatmapSelectedCharacter);
+    heatmapData = getNumberOfLinesPerEpisode(heatmapSelectedCharacter);
     wordcloudData = getCharacterWordsEntireShow(
-      allData,
       wordcloudSelectedCharacter,
       numWordcloudWords
     );
+    // Tree map data is determined within treeMap.js and never changes
     //#endregion
 
     //#region Create visualizations
     barchart = new BarChart();
     heatmap = new HeatMap();
     wordcloud = new WordCloud();
+    treemap = new TreeMap();
     //#endregion
 
     //#region Bar Chart logic
@@ -48,7 +51,6 @@ d3.json("data/data.json")
       // If the "Episode appearances" option is chosen, get that data for the selected period
       if (barchartIsAppearances) {
         const appearances = getTopCharactersAppearancesBySeason(
-          allData,
           numBarchartCharacters
         );
         // If the entire show is selected, get the counts for that
@@ -64,10 +66,7 @@ d3.json("data/data.json")
       }
       // Otherwise, get the lines spoken for the selected period
       else {
-        const lines = getTopCharactersLinesBySeason(
-          allData,
-          numBarchartCharacters
-        );
+        const lines = getTopCharactersLinesBySeason(numBarchartCharacters);
         // If the entire show is selected, get the counts for that
         if (barchartSelectedPeriod == 0) {
           barchartData = getTopCharactersLinesEntireShow(
@@ -107,10 +106,7 @@ d3.json("data/data.json")
     );
 
     const updateHeatmap = () => {
-      heatmapData = getNumberOfLinesPerEpisode(
-        allData,
-        heatmapSelectedCharacter
-      );
+      heatmapData = getNumberOfLinesPerEpisode(heatmapSelectedCharacter);
       heatmap.updateVis();
     };
 
@@ -132,13 +128,11 @@ d3.json("data/data.json")
     const updateWordcloud = () => {
       if (wordcloudSelectedPeriod == 0) {
         wordcloudData = getCharacterWordsEntireShow(
-          allData,
           wordcloudSelectedCharacter,
           numWordcloudWords
         );
       } else {
         getCharacterWordsSingleSeason(
-          allData,
           wordcloudSelectedPeriod,
           wordcloudSelectedCharacter,
           numWordcloudWords
@@ -178,9 +172,6 @@ d3.json("data/data.json")
     //#endregion
 
     //#region Arc Diagram logic
-    //#endregion
-
-    //#region Tree Map logic
     //#endregion
   })
   .catch((error) => console.error(error));
