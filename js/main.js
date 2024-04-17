@@ -49,7 +49,7 @@ d3.json("data/data.json")
     //#endregion
 
     //#region Create visualizations
-    barchart = new BarChart();
+    barchart = new BarChart({ parentElement: "#barchart" });
     heatmap = new HeatMap();
     wordcloud = new WordCloud();
     arcdiagram = new ArcDiagram();
