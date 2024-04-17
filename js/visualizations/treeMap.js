@@ -39,17 +39,15 @@ class TreeMap {
         .attr("transform",
               `translate(${vis.config.margin.left}, ${vis.config.margin.top})`);
 
-    const root = d3.hierarchy(vis.data);
+    const root = d3.hierarchy(vis.data).sum(function(d){return d.value});    
 
-    //.sum(function(d){return d.location});    
-
-    const treemap = d3.treemap()
+    console.log(root);
+    d3.treemap()
       .size([vis.config.containerWidth, vis.config.containerHeight])
       .paddingTop(28)
       .paddingRight(7)
-      .paddingInner(3);
-
-    treemap(root);
+      .paddingInner(3)
+      (root);
 
     console.log(root);
     console.log(root.leaves());
@@ -65,8 +63,5 @@ class TreeMap {
         .style("stroke", "black")
         .style("fill", "gray")
         .style("opacity", "0.7");
-
-
-
   }
 }
