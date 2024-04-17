@@ -3,12 +3,12 @@
 // Additionally, the data is dynamically updated based on the radio buttons and dropdown. No need to worry about that
 // Simply create the visualization using the vis.data in updateVis()
 class BarChart {
-  constructor(_config) {
+  constructor() {
     // TODO: add more configurations (width, height, margins, etc.)
     this.config = {
-      parentElement: _config.parentElement,
-      containerWidth: _config.containerWidth || 500,
-      containerHeight: _config.containerHeight || 430,
+      parentElement: "#barchart",
+      containerWidth: 500,
+      containerHeight: 430,
       margin: { top: 20, bottom: 50, right: 30, left: 55 },
     };
 
