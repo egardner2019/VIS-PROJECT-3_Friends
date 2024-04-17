@@ -175,7 +175,7 @@ const getMinLinesSpoken = () => {
 // Get the data for the tree map visualization
 const getTreeMapData = (numLocations, numCharacters) => {
   const locations = locationFrequencies.slice(0, numLocations);
-  return locations.map((locationObj) => {
+  const occurrencesByLocation = locations.map((locationObj) => {
     const location = locationObj.location;
     const characterAppearances = {};
 
@@ -212,6 +212,15 @@ const getTreeMapData = (numLocations, numCharacters) => {
       ),
     };
   });
+
+  // Return the data with the total number of appearances for each location
+  return occurrencesByLocation.map((location) => ({
+    ...location,
+    totalAppearances: location.characterAppearances.reduce(
+      (total, character) => total + character.numAppearances,
+      0
+    ),
+  }));
 };
 
 // Get the number of scenes each pair of the top characters are in together (for arc diagram)
