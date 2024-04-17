@@ -2,6 +2,13 @@ let allData;
 let barchart, heatmap, wordcloud, arcdiagram, treemap;
 let barchartData, heatmapData, wordcloudData, arcdiagramData;
 
+// Create the tooltip for easy access from each visualization
+const tooltip = d3
+  .select("body")
+  .append("div")
+  .attr("class", "tooltip")
+  .style("visibility", "hidden");
+
 // Change the variable below to get more/fewer characters for the bar chart
 const numBarchartCharacters = 10;
 // Change the variable below to get more/fewer words for the word cloud
