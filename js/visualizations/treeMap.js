@@ -6,7 +6,10 @@ class TreeMap {
   constructor() {
     // TODO: add more configurations (width, height, margins, etc.)
     this.config = {
-      parentElement: "#treemap",
+      containerWidth: 400,
+      containerHeight: 400,
+      margin: {top: 25, right: 25, bottom: 25, left: 25},
+      parentElement: "#treemap"
     };
 
     // Modify these values if you want to get a different number of
@@ -27,5 +30,43 @@ class TreeMap {
     console.log("Tree map data:", vis.data);
 
     // TODO: add the logic to create the visualization
+
+    var svg = d3.select(vis.config.parentElement)
+      .append("svg")
+        .attr("width", vis.config.containerWidth + vis.config.margin.left + vis.config.margin.right)
+        .attr("height", vis.config.containerHeight + vis.config.margin.top + vis.config.margin.bottom)
+      .append("g")
+        .attr("transform",
+              `translate(${vis.config.margin.left}, ${vis.config.margin.top})`);
+
+    const root = d3.hierarchy(vis.data);
+
+    //.sum(function(d){return d.location});    
+
+    const treemap = d3.treemap()
+      .size([vis.config.containerWidth, vis.config.containerHeight])
+      .paddingTop(28)
+      .paddingRight(7)
+      .paddingInner(3);
+
+    treemap(root);
+
+    console.log(root);
+    console.log(root.leaves());
+
+    svg
+      .selectAll("rect")
+      .data(root.leaves())
+      .join("rect")
+        .attr('x', function (d) { return d.x0; })
+        .attr('y', function (d) { return d.y0; })
+        .attr('width', function (d) { return d.x1 - d.x0; })
+        .attr('height', function (d) { return d.y1 - d.y0; })
+        .style("stroke", "black")
+        .style("fill", "gray")
+        .style("opacity", "0.7");
+
+
+
   }
 }
