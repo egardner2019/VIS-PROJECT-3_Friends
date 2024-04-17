@@ -57,7 +57,7 @@ class WordCloud {
       .words(wordcloudData.map(d => ({ text: d.word, size: d.count })))
       .padding(5)
       .rotate(0)
-      .fontSize(d => Math.sqrt(d.size / maxCount) * 70) 
+      .fontSize(d => Math.sqrt(d.size / maxCount) * 60) 
       .on("end", draw);
 
     layout.start();
@@ -65,7 +65,7 @@ class WordCloud {
     function draw(words) {
       vis.svg
         .append("g")
-        .attr("transform", `translate(${vis.config.containerWidth / 3},${vis.config.containerHeight / 2})`)
+        .attr("transform", `translate(${vis.config.containerWidth / 2.5},${vis.config.containerHeight / 2})`)
         .selectAll("text")
         .data(words)
         .join("text")
