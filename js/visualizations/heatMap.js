@@ -1,12 +1,10 @@
-// NOTE FOR MOLLY: the heatmap div has already been created in index.html
-// Simply start adding elements (add an svg to the parentElement in config), and they will show up
-// Additionally, the data is dynamically updated based on the dropdown. No need to worry about that
-// Simply create the visualization using the vis.data in updateVis()
 class HeatMap {
   constructor() {
-    // TODO: add more configurations (width, height, margins, etc.)
     this.config = {
       parentElement: "#heatmap",
+      width: 800,
+      height: 400,
+      margin: { top: 20, right: 20, bottom: 50, left: 50 }
     };
 
     this.initVis();
@@ -15,31 +13,107 @@ class HeatMap {
   initVis() {
     const vis = this;
 
-    // TODO: add the logic to create the visualization's elements that won't update at all (not reliant upon data)
+    vis.width = vis.config.width - vis.config.margin.left - vis.config.margin.right;
+    vis.height = vis.config.height - vis.config.margin.top - vis.config.margin.bottom;
+
+    vis.svg = d3.select(vis.config.parentElement)
+      .append('svg')
+      .attr('width', vis.config.width)
+      .attr('height', vis.config.height)
+      .append('g')
+      .attr('transform', `translate(${vis.config.margin.left},${vis.config.margin.top})`);
+
+    vis.xScale = d3.scaleBand().range([0, vis.width]).padding(0.05);
+    vis.yScale = d3.scaleBand().range([vis.height, 0]).padding(0.05);
+
+    vis.xAxis = d3.axisBottom(vis.xScale).tickFormat(d => `E${d}`);
+    vis.yAxis = d3.axisLeft(vis.yScale).tickFormat(d => `S${d}`);
+
+    vis.xAxisGroup = vis.svg.append('g')
+      .attr('transform', `translate(0, ${vis.height})`);
+
+    vis.yAxisGroup = vis.svg.append('g');
+
+    vis.xScale.domain(d3.range(1, 26));
+    vis.yScale.domain(d3.range(1, 11));
+
+    vis.xAxisGroup.call(vis.xAxis);
+    vis.yAxisGroup.call(vis.yAxis);
+
+    vis.svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", vis.width / 2 + vis.config.margin.left)
+      .attr("y", vis.height + vis.config.margin.bottom - 10)
+      .text("Episode");
+
+    vis.svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -vis.config.margin.left + 15)
+      .attr("x", -vis.height / 2 + vis.config.margin.top)
+      .text("Season");
+
+    vis.tooltip = d3.select('body').append('div')
+      .attr('class', 'tooltip')
+      .style('visibility', 'hidden');
 
     vis.updateVis();
   }
 
   updateVis() {
     const vis = this;
-    vis.data = heatmapData;
+    vis.data = heatmapData; 
 
-    const minLinesSpoken = getMinLinesSpoken();
-    const maxLinesSpoken = getMaxLinesSpoken();
+    const rects = vis.svg.selectAll('rect')
+      .data(vis.data, d => `${d.seasonNum}-${d.episodeNum}`);
 
-    // NOTE FOR MOLLY: use [minLinesSpoken, maxLinesSpoken] for the color range
-    // This automatically updates whenever a new character is selected
-    console.log("Heatmap color range:", minLinesSpoken, maxLinesSpoken);
+    rects.join('rect')
+      .attr('x', d => vis.xScale(d.episodeNum))
+      .attr('y', d => vis.yScale(d.seasonNum))
+      .attr('width', vis.xScale.bandwidth())
+      .attr('height', vis.yScale.bandwidth())
+      .attr('fill', d => getColorForSeasonAndLines(heatmapSelectedCharacter, d.linesSpoken))
+      .on('mouseover', function (event, d) {
+        d3.select(this).attr("stroke-width", "2").attr("stroke", "black");
+        vis.tooltip
+          .style("visibility", "visible")
+          .html(`
+            <div class="tooltip-title">S${d.seasonNum}E${d.episodeNum}: ${d.episodeName}</div>
+            <div>Lines Spoken: ${d.linesSpoken}</div>
+          `);
+      })
+      .on('mousemove', function (event) {
+        vis.tooltip
+          .style("top", `${event.pageY - 10}px`)
+          .style("left", `${event.pageX + 10}px`);
+      })
+      .on('mouseout', function () {
+        d3.select(this).attr("stroke-width", "0").attr("stroke", "none");
+        vis.tooltip.style("visibility", "hidden");
+      });
 
-    // NOTE FOR MOLLY: use the vis.data variable. If you decide you need a different format, feel free to modify the vis.data variable
-    // ... after it's set to heatmapData. I would shy away from modifying the heatmapData variable without contacting Emma
-    // The data is automatically filtered by the selected character, so no need to worry about that part
-    console.log("Heatmap data:", vis.data);
 
-    // NOTE FOR MOLLY: you can get the currently selected character using the heatmapSelectedCharacter variable (if you need it for labels or the tooltip)
-    // I don't believe you will need this value, as the user knows who they selected in the dropdown, but I wanted to keep you informed
-    console.log("Heatmap selected character:", heatmapSelectedCharacter);
+}
 
-    // TODO: add the logic to create the elements that update based on the data (reminder: use .join instead of .enter and .append)
-  }
+}
+
+function getColorForSeasonAndLines(character, lines) {
+
+  const characterGradients = {
+    'Ross': d3.interpolateRgb('#ffcccc', '#8b0000'), 
+    'Rachel': d3.interpolateRgb('#ffe5cc', '#8b2500'),
+    'Monica': d3.interpolateRgb('#cce0ff', '#00008b'), 
+    'Chandler': d3.interpolateRgb('#ccffcc', '#006400'), 
+    'Joey': d3.interpolateRgb('#ffd1dc', '#880088'), 
+    'Phoebe': d3.interpolateRgb('#e6ccff', '#4b0082') 
+  };
+
+  const minLinesSpoken = getMinLinesSpoken();
+  const maxLinesSpoken = getMaxLinesSpoken();
+  const lineScale = d3.scaleLinear()
+    .domain([minLinesSpoken, maxLinesSpoken])
+    .range([0, 1]); 
+  const colorInterpolator = characterGradients[character];
+
+  return colorInterpolator(lineScale(lines));
 }
