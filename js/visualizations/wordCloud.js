@@ -49,12 +49,13 @@ class WordCloud {
 
     vis.svg.selectAll("*").remove();
 
-    const maxCount = d3.max(wordcloudData, d => d.count);
+    const maxCount = d3.max(vis.data, d => d.count);
+    const colors = ["#EC4E20", "#FFBD0A", "#0E76A8"];
 
     const layout = d3.layout
       .cloud()
       .size([vis.config.containerWidth, vis.config.containerHeight])
-      .words(wordcloudData.map(d => ({ text: d.word, size: d.count })))
+      .words(vis.data.map(d => ({ text: d.word, size: d.count, newSize: d.count })))
       .padding(5)
       .rotate(0)
       .fontSize(d => Math.sqrt(d.size / maxCount) * 60) 
@@ -70,11 +71,31 @@ class WordCloud {
         .data(words)
         .join("text")
         .style("font-size", d => d.size + "px")
-        .style("fill", "black")
+        .style("fill", (d, i) => colors[i % colors.length]) 
+        .style("stroke", "black") 
+        .style("stroke-width", "1px") 
         .attr("text-anchor", "middle")
         .attr("transform", d => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`)
-        .text(d => d.text);
+        .text(d => d.text)
+        
+        .on("mouseover", function(event, d) {
+          d3.select(this).attr("stroke-width", "2").attr("stroke", "white"); 
+          tooltip.style("visibility", "visible").html(`
+            <div class="tooltip-title">${d.text}</div>
+            <div>Count: ${d.newSize}</div>
+          `);
+        })
+        .on("mousemove", function(event) {
+          tooltip
+            .style("top", event.pageY - 10 + "px")
+            .style("left", event.pageX + 10 + "px");
+        })
+        .on("mouseout", function() {
+          d3.select(this).attr("stroke-width", "0").attr("stroke", "none"); 
+          tooltip.style("visibility", "hidden");
+        });
     }
+    
     // NOTE FOR EMILY B: use the vis.data variable. If it's not in a good format, feel free to modify the vis.data variable
     // ... but I would shy away from modifying the wordcloudData variable without contacting Emma
     // If there are words in the data that you don't want to include, simply add the word you want to hide to the

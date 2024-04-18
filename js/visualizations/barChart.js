@@ -113,17 +113,43 @@ class BarChart {
     vis.svg.select(".y-axis-label")
     .text(barchartIsAppearances ? "Number of Appearances" : "Number of Lines");
 
+    
     // Creates the bars
     const bars = vis.svg.selectAll(".bar").data(vis.data);
     // Updates the bars based on the data
+    
+    // const colors = ['#ff4238', '#ffdc00', '#42a2d6', '#9a0006', '#fff580', '#00009e'];
+    // const colors = ["#EC4E20", "#FFBD0A", "#0E76A8", "#55A860", "#D8AB86", "#874D92", "#6E7F80", "#A06545", "#F0C05A", "#E76F51"];
+    const colors = ["#EC4E20", "#FFBD0A", "#0E76A8"];
+
     bars
       .join("rect")
       .attr("class", "bar")
       .attr("x", d => vis.x(d.character))
       .attr("width", vis.x.bandwidth())
       .attr("y", d => vis.y(barchartIsAppearances ? d.numAppearances : d.numLines))
-      .attr("height", d => vis.config.containerHeight - vis.y(barchartIsAppearances ? d.numAppearances : d.numLines));
-
+      .attr("height", d => vis.config.containerHeight - vis.y(barchartIsAppearances ? d.numAppearances : d.numLines))
+      .style("fill", (d, i) => colors[i % colors.length])
+      .style("stroke", "black")
+      .style("stroke-width", 2) 
+      .attr("rx", 2) // Make the bars have rounded edges
+      .attr("ry", 2)
+      .on("mouseover", function(event, d) {
+        d3.select(this).attr("stroke-width", "2").attr("stroke", "white");
+        tooltip.style("visibility", "visible").html(`
+          <div class="tooltip-title">${d.character}</div>
+          <div><b>${barchartIsAppearances ? "Number of Appearances" : "Number of Lines"}</b>: ${barchartIsAppearances ? d.numAppearances : d.numLines}</div>
+        `);
+      })
+      .on("mousemove", function(event) {
+        tooltip
+          .style("top", event.pageY - 10 + "px")
+          .style("left", event.pageX + 10 + "px");
+      })
+      .on("mouseout", function() {
+        d3.select(this).attr("stroke-width", "1").attr("stroke", "black");
+        tooltip.style("visibility", "hidden");
+      });
     // NOTE FOR EMILY B: you can also get the selected season with the barchartSelectedPeriod variable.
     // It's 0 when the user selected the entire show and anything else for that season (e.g. barchartSelectedPeriod == 1 means the first season was chosen)
     console.log("Barchart selected period:", barchartSelectedPeriod);
