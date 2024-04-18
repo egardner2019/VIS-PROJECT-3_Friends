@@ -149,7 +149,7 @@ d3.json("data/data.json")
           numWordcloudWords
         );
       } else {
-        getCharacterWordsSingleSeason(
+        wordcloudData = getCharacterWordsSingleSeason(
           wordcloudSelectedPeriod,
           wordcloudSelectedCharacter,
           numWordcloudWords
