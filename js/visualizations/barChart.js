@@ -119,8 +119,9 @@ class BarChart {
     // Updates the bars based on the data
     
     // const colors = ['#ff4238', '#ffdc00', '#42a2d6', '#9a0006', '#fff580', '#00009e'];
-    // const colors = ["#EC4E20", "#FFBD0A", "#0E76A8", "#55A860", "#D8AB86", "#874D92", "#6E7F80", "#A06545", "#F0C05A", "#E76F51"];
-    const colors = ["#EC4E20", "#FFBD0A", "#0E76A8"];
+      // const colors = ['#ff4238', '#ffdc00', '#42a2d6'];
+    const colors = ["#EC4E20", "#FFBD0A", "#0E76A8", "#55A860", "#D8AB86", "#874D92", "#6E7F80", "#A06545", "#F0C05A", "#E76F51"];
+    // const colors = ["#EC4E20", "#FFBD0A", "#0E76A8"];
 
     bars
       .join("rect")
