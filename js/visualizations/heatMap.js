@@ -101,11 +101,11 @@ function getColorForSeasonAndLines(character, lines) {
 
   const characterGradients = {
     'Ross': d3.interpolateRgb('#ffcccc', '#8b0000'), 
-    'Rachel': d3.interpolateRgb('#ffe5cc', '#8b2500'),
+    'Rachel': d3.interpolateRgb('#fff200', '#9b8600'),
     'Monica': d3.interpolateRgb('#cce0ff', '#00008b'), 
-    'Chandler': d3.interpolateRgb('#ccffcc', '#006400'), 
-    'Joey': d3.interpolateRgb('#ffd1dc', '#880088'), 
-    'Phoebe': d3.interpolateRgb('#e6ccff', '#4b0082') 
+    'Chandler': d3.interpolateRgb('#f0c8d0', '#600000'), 
+    'Joey': d3.interpolateRgb('#FFFACD', '#9C8C15'), 
+    'Phoebe': d3.interpolateRgb('#cceeff', '#004c99')
   };
 
   const minLinesSpoken = getMinLinesSpoken();

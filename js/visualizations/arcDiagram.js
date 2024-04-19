@@ -35,7 +35,9 @@ class ArcDiagram {
     vis.tooltip = d3.select('body').append('div')
       .attr('class', 'tooltip')
       .style('visibility', 'hidden');
-
+    
+    vis.seasonColors = ["#EC4E20", "#FFBD0A", "#0E76A8", "#55A860", "#D8AB86", "#874D92", "#6E7F80", "#A06545", "#F0C05A", "#E76F51"];
+    vis.mainCharacters = ["Joey", "Chandler", "Monica", "Phoebe", "Ross", "Rachel"];
     vis.updateVis();
   }
 
@@ -43,11 +45,9 @@ class ArcDiagram {
   updateVis() {
     const vis = this;
     vis.data = arcdiagramData;
-
-    const mainCharacters = ["Joey", "Chandler", "Monica", "Phoebe", "Ross", "Rachel"];
     const dataCharacters = Array.from(new Set(vis.data.flatMap(d => [d.characterA, d.characterB])));
-    const allCharacters = mainCharacters
-      .concat(dataCharacters.filter(d => !mainCharacters.includes(d)));
+    const allCharacters = vis.mainCharacters
+      .concat(dataCharacters.filter(d => !vis.mainCharacters.includes(d)));
     vis.xScale.domain(allCharacters);
 
     function getStrokeWidth(interactions) {
@@ -108,7 +108,7 @@ class ArcDiagram {
         ]);
       })
       .attr("fill", "none")
-      .attr("stroke", "black")
+      .attr("stroke", d => vis.seasonColors[arcdiagramSelectedSeason - 1])
       .attr("stroke-width", d => getStrokeWidth(d.interactions))
       .style('opacity', 0.7);
   }
