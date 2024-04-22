@@ -2,9 +2,9 @@ class ArcDiagram {
   constructor() {
     this.config = {
       parentElement: "#arcdiagram",
-      width: 960,
-      height: 300,
-      margin: { top: 40, right: 20, bottom: 40, left: 20 },
+      width: 1200,
+      height: 200,
+      margin: { top: 40, right: 20, bottom: 0, left: 20 },
     };
 
     this.initVis();
@@ -97,7 +97,7 @@ class ArcDiagram {
       .style("text-anchor", "middle")
       .text((d) => d)
       .on("mouseover", function (event, d) {
-        d3.select(this).attr("cursor", "default")
+        d3.select(this).attr("cursor", "default");
         vis.svg
           .selectAll(".link")
           .style("opacity", 0.1)

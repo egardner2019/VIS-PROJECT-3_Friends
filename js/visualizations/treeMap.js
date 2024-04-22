@@ -3,7 +3,7 @@ class TreeMap {
     this.config = {
       containerWidth: 400,
       containerHeight: 400,
-      margin: { top: 25, right: 25, bottom: 25, left: 25 },
+      margin: { top: 0, right: 25, bottom: 25, left: 25 },
       parentElement: "#treemap",
     };
 

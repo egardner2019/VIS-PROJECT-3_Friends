@@ -2,7 +2,7 @@ class HeatMap {
   constructor() {
     this.config = {
       parentElement: "#heatmap",
-      width: 800,
+      width: 1000,
       height: 400,
       margin: { top: 20, right: 20, bottom: 50, left: 50 },
     };
@@ -111,12 +111,12 @@ class HeatMap {
 
 function getColorForSeasonAndLines(character, lines) {
   const characterGradients = {
-    Ross: d3.interpolateRgb("#ffcccc", "#8b0000"),
-    Rachel: d3.interpolateRgb("#fff200", "#9b8600"),
-    Monica: d3.interpolateRgb("#cce0ff", "#00008b"),
-    Chandler: d3.interpolateRgb("#f0c8d0", "#600000"),
-    Joey: d3.interpolateRgb("#FFFACD", "#9C8C15"),
-    Phoebe: d3.interpolateRgb("#cceeff", "#004c99"),
+    Chandler: d3.interpolateRgb("#fdede8", "#EC4E20"),
+    Joey: d3.interpolateRgb("#fff8e6", "#FFBD0A"),
+    Monica: d3.interpolateRgb("#e6f1f6", "#0E76A8"),
+    Phoebe: d3.interpolateRgb("#eef6ef", "#55A860"),
+    Rachel: d3.interpolateRgb("#fbf6f2", "#D8AB86"),
+    Ross: d3.interpolateRgb("#f3edf4", "#874D92"),
   };
 
   const minLinesSpoken = getMinLinesSpoken();

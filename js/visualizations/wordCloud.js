@@ -4,7 +4,7 @@ class WordCloud {
       parentElement: "#wordcloud",
       containerWidth: 550,
       containerHeight: 400,
-      margin: { top: 20, bottom: 50, right: 30, left: 55 },
+      margin: { top: 20, bottom: 0, right: 0, left: 55 },
     };
 
     this.initVis();
@@ -43,7 +43,7 @@ class WordCloud {
     vis.svg.selectAll("*").remove();
 
     const maxCount = d3.max(vis.data, (d) => d.count);
-    const colors = ["#ff4238", "#ffdc00", "#42a2d6"];
+    const colors = ["#EC4E20", "#FFBD0A", "#0E76A8"];
 
     const layout = d3.layout
       .cloud()
@@ -74,7 +74,7 @@ class WordCloud {
         .style("fill", (d, i) => colors[i % colors.length])
         .style("stroke-width", "0px")
         .attr("text-anchor", "middle")
-        .style("text-shadow", "1px 1px 2px black")
+        .style("text-shadow", "1px 1px 1px gray")
         .attr(
           "transform",
           (d) => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`

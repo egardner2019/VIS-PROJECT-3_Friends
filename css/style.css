@@ -6,8 +6,14 @@ body {
 
 .flexContainer {
   display: flex;
-  justify-content: space-around;
-  gap: 10px;
+  justify-content: start;
+  gap: 30px;
+}
+
+.centerHorizontally {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tooltip {

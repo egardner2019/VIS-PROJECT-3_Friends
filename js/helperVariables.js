@@ -1,7 +1,13 @@
 // Stop words (e.g., the, it, when)
 const stopWords = [
   "i",
+  "ive",
+  "ill",
   "im",
+  "lets",
+  "uh",
+  "um",
+  "umm",
   "hes",
   "shes",
   "me",

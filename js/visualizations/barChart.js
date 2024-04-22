@@ -3,7 +3,7 @@ class BarChart {
     this.config = {
       parentElement: "#barchart",
       containerWidth: 500,
-      containerHeight: 430,
+      containerHeight: 300,
       margin: { top: 20, bottom: 50, right: 30, left: 55 },
     };
 
