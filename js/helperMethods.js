@@ -203,24 +203,30 @@ const getTreeMapData = (numLocations, numCharacters) => {
       .slice(0, numCharacters);
 
     return {
-      location,
-      characterAppearances: sortedCharacters.map(
-        ([character, numAppearances]) => ({
-          character,
-          numAppearances,
-        })
-      ),
+      name: location,
+      children: sortedCharacters.map(([character, numAppearances]) => ({
+        name: character,
+        value: numAppearances,
+      })),
     };
   });
 
-  // Return the data with the total number of appearances for each location
-  return occurrencesByLocation.map((location) => ({
-    ...location,
-    totalAppearances: location.characterAppearances.reduce(
-      (total, character) => total + character.numAppearances,
-      0
-    ),
-  }));
+  return {
+    name: "Locations",
+    children: occurrencesByLocation,
+  };
+};
+
+const getMinMaxTreeMapValues = (data) => {
+  const values = data.children.reduce(
+    (acc, child) => [
+      ...acc,
+      ...child.children.map((grandchild) => grandchild.value),
+    ],
+    []
+  );
+
+  return [Math.min(...values), Math.max(...values)];
 };
 
 // Get the number of scenes each pair of the top characters are in together (for arc diagram)
