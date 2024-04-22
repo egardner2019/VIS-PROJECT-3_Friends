@@ -4,7 +4,6 @@
 // ... createVis is used in place of initVis and updateVis
 class TreeMap {
   constructor() {
-    // TODO: add more configurations (width, height, margins, etc.)
     this.config = {
       containerWidth: 400,
       containerHeight: 400,
@@ -66,7 +65,7 @@ class TreeMap {
     const color = d3
       .scaleOrdinal()
       .domain(vis.data.children.map((child) => child.name))
-      .range(d3.schemeCategory10); // Feel free to manually set colors if you don't like this preset color scheme
+      .range(["#EC4E20", "#FFBD0A", "#0E76A8", "#55A860", "#D8AB86", "#874D92", "#6E7F80", "#A06545", "#F0C05A", "#E76F51"]); 
 
     // Prepare an opacity scale
     const opacity = d3
