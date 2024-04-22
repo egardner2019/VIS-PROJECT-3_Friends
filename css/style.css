@@ -10,6 +10,12 @@ body {
   gap: 30px;
 }
 
+.flexSpaceAround {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+}
+
 .centerHorizontally {
   display: flex;
   flex-direction: column;
