@@ -1,18 +1,13 @@
-// NOTE FOR EMILY T: the treemap div has already been created in index.html
-// Simply start adding elements (add an svg to the parentElement), and they will show up
-// Also, since this visualization doesn't need to update at all (data doesn't change)
-// ... createVis is used in place of initVis and updateVis
 class TreeMap {
   constructor() {
     this.config = {
       containerWidth: 400,
       containerHeight: 400,
-      margin: { top: 25, right: 25, bottom: 25, left: 25 },
+      margin: { top: 0, right: 25, bottom: 25, left: 25 },
       parentElement: "#treemap",
     };
 
-    // Modify these values if you want to get a different number of
-    // ... locations or characters in each location
+    // Can modify these values to get a different number of locations/characters
     const numCharacters = 10;
     const numLocations = 10;
 
@@ -23,12 +18,6 @@ class TreeMap {
 
   createVis() {
     const vis = this;
-
-    // NOTE FOR EMILY T: use the vis.data variable. If you need it in a different format,
-    // ... please reach out to Emma, and she'll change it.
-    console.log("Tree map data:", vis.data);
-
-    // TODO: add the logic to create the visualization
 
     var svg = d3
       .select(vis.config.parentElement)
@@ -65,7 +54,18 @@ class TreeMap {
     const color = d3
       .scaleOrdinal()
       .domain(vis.data.children.map((child) => child.name))
-      .range(["#EC4E20", "#FFBD0A", "#0E76A8", "#55A860", "#D8AB86", "#874D92", "#6E7F80", "#A06545", "#F0C05A", "#E76F51"]); 
+      .range([
+        "#EC4E20",
+        "#FFBD0A",
+        "#0E76A8",
+        "#55A860",
+        "#D8AB86",
+        "#874D92",
+        "#6E7F80",
+        "#A06545",
+        "#F0C05A",
+        "#E76F51",
+      ]);
 
     // Prepare an opacity scale
     const opacity = d3
@@ -79,12 +79,14 @@ class TreeMap {
       .join("rect")
       .attr("x", (d) => d.x0)
       .attr("y", (d) => d.y0)
+      .attr("rx", 2)
+      .attr("ry", 2)
       .attr("width", (d) => d.x1 - d.x0)
       .attr("height", (d) => d.y1 - d.y0)
       .style("fill", (d) => color(d.parent.data.name))
       .style("opacity", (d) => opacity(d.data.value))
       .on("mouseover", function (event, d) {
-        d3.select(this).attr("stroke-width", "2").attr("stroke", "white");
+        d3.select(this).attr("stroke-width", "2").attr("stroke", "black");
         tooltip.style("visibility", "visible").html(`
           <div class="tooltip-title">${d.parent.data.name}</div>
           <div><b>Character</b>: ${d.data.name}</div>

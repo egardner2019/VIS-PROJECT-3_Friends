@@ -7,161 +7,105 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>Project 3: TV Time</h1>
-    <p>
-      By: Emily Bever, Emma Gardner, Emily Turcotte, and Molly Vongsakhamphouy
-    </p>
-    <h2>Friends</h2>
-    <div id="aboutContainer" class="flexContainer">
-      <div id="aboutShowDiv">
-        <h3>About the Show</h3>    
-          <p>Friends is an American sitcom that aired on NBC from September 22, 1994, to May 6, 2004.</p>
-                    
-          <p>The show is set in Manahattan and revolves around a group of six friends in their 20s and 30s as they navigate through the ups and downs of life, love, career, and friendship.</p>
-          
-          <p>It is known for its humor, beloved characters, and memorable catchphrases.</p>
-          
-          <p>The show falls under the genre of sitcom (situation comedy), a comedy following the same set of characters facing various situations every episode.</p>
-
-    <h4>Main Characters</h4>
-    <ul>
-        <li>Rachel Green - played by Jennifer Aniston</li>
-        <li>Monica Geller - played by Courteney Cox</li>
-        <li>Phoebe Buffay - played by Lisa Kudrow</li>
-        <li>Joey Tribbiani - played by Matt LeBlanc</li>
-        <li>Chandler Bing - played by Matthew Perry</li>
-        <li>Ross Geller - played by David Schwimmer</li>  
-    </ul>
-        
-      </div>
-      <div id="aboutSeasonsEpisodesDiv">
-        <h3>About the Seasons and Episodes</h3>
-        <p>Friends spans across 10 seasons, with seasons ranging from 17 - 25 episodes long (Multiple part episodes are combined).</p>
-        <p>Here's a breakdown of the seasons and episodes:</p>
-            <ul>
-                <li><strong>Season 1:</strong> 24 episodes</li>
-                <li><strong>Season 2:</strong> 23 episodes</li>
-                <li><strong>Season 3:</strong> 25 episodes</li>
-                <li><strong>Season 4:</strong> 23 episodes</li>
-                <li><strong>Season 5:</strong> 23 episodes</li>
-                <li><strong>Season 6:</strong> 23 episodes</li>
-                <li><strong>Season 7:</strong> 23 episodes</li>
-                <li><strong>Season 8:</strong> 23 episodes</li>
-                <li><strong>Season 9:</strong> 23 episodes</li>
-                <li><strong>Season 10:</strong> 17 episodes</li>
-            </ul>
-        <p>This totals to a grand total of 227 episodes over the course of the show.</p>
-      </div>
-      <div id="aboutCharactersDiv">
-        <h3>About the Characters</h3>
-        <p>Friends follows six friends in their 20s and 30s:</p>
-
-        <ul>
-            <li><strong>Rachel Green:</strong> The fashionable, charismatic barista</li>
-            <li><strong>Monica Geller:</strong> The energetic, neat-freak chef</li>
-            <li><strong>Phoebe Buffay:</strong> The eccentric and free-spirited masseuse</li>
-            <li><strong>Joey Tribbiani:</strong> The actor with a love of food</li>
-            <li><strong>Chandler Bing:</strong> The sarcastic, comedic office worker</li>
-            <li><strong>Ross Geller:</strong> The goofy, lovable paleontologist</li>
-        </ul>
-
-        <p>Some prominent side characters include:</p>
-        <ul>
-            <li><strong>Janice Litman-Goralnik:</strong> Chandler's on-again, off-again girlfriend</li>
-            <li><strong>Gunther:</strong> The manager of Central Perk</li>
-            <li><strong>Richard Burke:</strong> An older love interest of Monica's and a family friend of the Geller's</li>
-            <li><strong>Mike Hannigan:</strong> Phoebe's love interest and eventual husband</li>
-            <li><strong>Emily Waltham:</strong> Ross's second wife from England</li>
-        </ul>
-
-      <p>These characters, along with many others, contribute to the foundational relationships and stories in Friends.</p>
-      </div>
+    <div class="centerHorizontally">
+      <h1>Project 3: TV Time</h1>
+      <i style="margin-top: 0px">
+        By: Emily Bever, Emma Gardner, Emily Turcotte, and Molly Vongsakhamphouy
+      </i>
     </div>
-    <div id="barchartSection">
-      <h3>Who are the most important characters?</h3>
-      <div class="flexContainer">
+    <div class="flexSpaceAround">
+      <div id="aboutContainer">
         <div>
-          <select name="barchartPeriodSelect" id="barchartPeriodSelect">
-            <option value="0">Entire Show</option>
-            <option value="1">Season 1</option>
-            <option value="2">Season 2</option>
-            <option value="3">Season 3</option>
-            <option value="4">Season 4</option>
-            <option value="5">Season 5</option>
-            <option value="6">Season 6</option>
-            <option value="7">Season 7</option>
-            <option value="8">Season 8</option>
-            <option value="9">Season 9</option>
-            <option value="10">Season 10</option>
-          </select>
+          <image src="public/friends_logo.svg" width="200px" />
         </div>
-        <div>
-          <b>Displayed data:</b>
-          <div>
-            <input
-              type="radio"
-              id="episodeAppearances"
-              name="displayedDataBarchart"
-              value="episodeAppearances"
-              checked
-            />
-            <label for="episodeAppearances">Episode appearances</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="linesSpoken"
-              name="displayedDataBarchart"
-              value="linesSpoken"
-            />
-            <label for="linesSpoken">Lines spoken</label>
-          </div>
+        <div id="aboutShowDiv">
+          <h3>About the Show</h3>
+          <p>
+            Friends is an American sitcom that aired on NBC from September 22,
+            1994, to May 6, 2004.
+          </p>
+          <p>
+            The show is set in Manhattan and revolves around a group of six
+            friends in their 20s and 30s as they navigate through the ups and
+            downs of life, love, career, and friendship.
+          </p>
+        </div>
+        <div id="aboutSeasonsEpisodesDiv">
+          <h3>About the Seasons and Episodes</h3>
+          <p>
+            Friends spans across 10 seasons, with each season containing between
+            17-25 episodes (multi-part episodes are combined). There are 227
+            episodes in total.
+          </p>
+        </div>
+        <div id="aboutCharactersDiv">
+          <h3>About the Characters</h3>
+          <p>Main characters:</p>
+          <ul>
+            <li>
+              <strong>Rachel Green <i>(Jennifer Aniston)</i>:</strong> The
+              fashionable, charismatic barista
+            </li>
+            <li>
+              <strong>Monica Geller <i>(Courteney Cox)</i>:</strong> The
+              energetic, neat-freak chef
+            </li>
+            <li>
+              <strong>Phoebe Buffay <i>(Lisa Kudrow)</i>:</strong> The eccentric
+              and free-spirited masseuse
+            </li>
+            <li>
+              <strong>Joey Tribbiani <i>(Matt LeBlanc)</i>:</strong> The actor
+              with a love of food
+            </li>
+            <li>
+              <strong>Chandler Bing <i>(Matthew Perry)</i>:</strong> The
+              sarcastic, comedic office worker
+            </li>
+            <li>
+              <strong>Ross Geller <i>(David Schwimmer)</i>:</strong> The goofy,
+              lovable paleontologist
+            </li>
+          </ul>
+          <p>Prominent side characters:</p>
+          <ul>
+            <li>
+              <strong>Janice Litman-Goralnik <i>(Maggie Wheeler)</i>:</strong>
+              Chandler's on-again, off-again girlfriend
+            </li>
+            <li>
+              <strong>Gunther <i>(James Michael Tyler)</i>:</strong> The manager
+              of Central Perk
+            </li>
+            <li>
+              <strong>Richard Burke <i>(Tom Selleck)</i>:</strong> An older love
+              interest of Monica's and a family friend of the Geller's
+            </li>
+            <li>
+              <strong>Mike Hannigan <i>(Paul Rudd)</i>:</strong> Phoebe's love
+              interest and eventual husband
+            </li>
+            <li>
+              <strong>Emily Waltham <i>(Helen Baxendale)</i>:</strong> Ross's
+              second wife from England
+            </li>
+          </ul>
         </div>
       </div>
-      <div id="barchart"></div>
+      <div
+        id="treemapSection"
+        class="centerHorizontally"
+        style="margin-top: 30px"
+      >
+        <h3>Where do characters speak?</h3>
+        <div id="treemap"></div>
+      </div>
     </div>
-    <div id="heatmapSection">
-      <h3>How much do the major characters speak?</h3>
-      <select name="heatmapCharacterSelect" id="heatmapCharacterSelect">
-        <option value="Chandler">Chandler</option>
-        <option value="Joey">Joey</option>
-        <option value="Monica">Monica</option>
-        <option value="Phoebe">Phoebe</option>
-        <option value="Rachel">Rachel</option>
-        <option value="Ross">Ross</option>
-      </select>
-      <div id="heatmap"></div>
-    </div>
-    <div id="wordcloudSection">
-      <h3>What do characters say?</h3>
-      <select name="wordcloudPeriodSelect" id="wordcloudPeriodSelect">
-        <option value="0">Entire Show</option>
-        <option value="1">Season 1</option>
-        <option value="2">Season 2</option>
-        <option value="3">Season 3</option>
-        <option value="4">Season 4</option>
-        <option value="5">Season 5</option>
-        <option value="6">Season 6</option>
-        <option value="7">Season 7</option>
-        <option value="8">Season 8</option>
-        <option value="9">Season 9</option>
-        <option value="10">Season 10</option>
-      </select>
-      <select name="wordCloudCharacterSelect" id="wordCloudCharacterSelect">
-        <option value="Rachel">Rachel</option>
-        <option value="Ross">Ross</option>
-        <option value="Chandler">Chandler</option>
-        <option value="Monica">Monica</option>
-        <option value="Joey">Joey</option>
-        <option value="Phoebe">Phoebe</option>
-        <option value="Mike">Mike</option>
-        <option value="Charlie">Charlie</option>
-        <option value="Emily">Emily</option>
-        <option value="Tag">Tag</option>
-      </select>
-      <div id="wordcloud"></div>
-    </div>
-    <div id="arcdiagramSection">
+    <div
+      id="arcdiagramSection"
+      class="centerHorizontally"
+      style="margin-top: 30px"
+    >
       <h3>Who appears in scenes together?</h3>
       <select name="arcdiagramPeriodSelect" id="arcdiagramPeriodSelect">
         <option value="1">Season 1</option>
@@ -177,9 +121,97 @@
       </select>
       <div id="arcdiagram"></div>
     </div>
-    <div id="treemapSection">
-      <h3>Where do characters speak?</h3>
-      <div id="treemap"></div>
+    <div class="flexSpaceAround" style="margin-top: 30px">
+      <div id="barchartSection" class="centerHorizontally">
+        <h3>Who are the most important characters?</h3>
+        <div class="flexContainer">
+          <div>
+            <select name="barchartPeriodSelect" id="barchartPeriodSelect">
+              <option value="0">Entire Show</option>
+              <option value="1">Season 1</option>
+              <option value="2">Season 2</option>
+              <option value="3">Season 3</option>
+              <option value="4">Season 4</option>
+              <option value="5">Season 5</option>
+              <option value="6">Season 6</option>
+              <option value="7">Season 7</option>
+              <option value="8">Season 8</option>
+              <option value="9">Season 9</option>
+              <option value="10">Season 10</option>
+            </select>
+          </div>
+          <div>
+            <b>Displayed data:</b>
+            <div>
+              <input
+                type="radio"
+                id="episodeAppearances"
+                name="displayedDataBarchart"
+                value="episodeAppearances"
+                checked
+              />
+              <label for="episodeAppearances">Episode appearances</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="linesSpoken"
+                name="displayedDataBarchart"
+                value="linesSpoken"
+              />
+              <label for="linesSpoken">Lines spoken</label>
+            </div>
+          </div>
+        </div>
+        <div id="barchart" style="margin-left: 20px"></div>
+      </div>
+      <div id="wordcloudSection" class="centerHorizontally">
+        <h3>What do characters say?</h3>
+        <div class="flexContainer">
+          <select name="wordcloudPeriodSelect" id="wordcloudPeriodSelect">
+            <option value="0">Entire Show</option>
+            <option value="1">Season 1</option>
+            <option value="2">Season 2</option>
+            <option value="3">Season 3</option>
+            <option value="4">Season 4</option>
+            <option value="5">Season 5</option>
+            <option value="6">Season 6</option>
+            <option value="7">Season 7</option>
+            <option value="8">Season 8</option>
+            <option value="9">Season 9</option>
+            <option value="10">Season 10</option>
+          </select>
+          <select name="wordCloudCharacterSelect" id="wordCloudCharacterSelect">
+            <option value="Rachel">Rachel</option>
+            <option value="Ross">Ross</option>
+            <option value="Chandler">Chandler</option>
+            <option value="Monica">Monica</option>
+            <option value="Joey">Joey</option>
+            <option value="Phoebe">Phoebe</option>
+            <option value="Mike">Mike</option>
+            <option value="Charlie">Charlie</option>
+            <option value="Emily">Emily</option>
+            <option value="Tag">Tag</option>
+          </select>
+        </div>
+        <div id="wordcloud"></div>
+      </div>
+    </div>
+    <div
+      id="heatmapSection"
+      class="centerHorizontally"
+      style="margin-top: 30px"
+    >
+      <h3>How much do the major characters speak?</h3>
+      <select name="heatmapCharacterSelect" id="heatmapCharacterSelect">
+        <option value="Chandler">Chandler</option>
+        <option value="Joey">Joey</option>
+        <option value="Monica">Monica</option>
+        <option value="Phoebe">Phoebe</option>
+        <option value="Rachel">Rachel</option>
+        <option value="Ross">Ross</option>
+      </select>
+      <div id="heatmap"></div>
     </div>
 
     <!-- D3 bundle -->
