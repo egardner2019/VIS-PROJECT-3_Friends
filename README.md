@@ -20,11 +20,12 @@ These instructions will get you a copy of the project up and running on your loc
 - [Git](https://git-scm.com/downloads) (if cloning)
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Live Preview Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server) by Microsoft for Visual Studio Code
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to install the package for the word cloud
 
 #### Cloning the Repository
 
 To clone the repository, open your terminal or command prompt and run the following command:\
-`git clone https://github.com/Phinmala/VIS-PROJECT-2_The-Truth-Is-Out-There.git`
+`git clone https://github.com/eturcotte270/VIS-PROJECT-3_Friends.git`
 
 #### Downloading as a ZIP File
 
